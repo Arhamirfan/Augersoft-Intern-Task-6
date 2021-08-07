@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intern_task_6/Constants.dart';
+import 'package:intern_task_6/Components/ItemsData.dart';
 import 'package:intern_task_6/Screens/detail_page_fullscreen.dart';
 
 class TrendingScreen extends StatelessWidget {
