@@ -1,0 +1,23 @@
+{
+    "name": "intern_task_6",
+    "short_name": "intern_task_6",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "Flutter Shopping Intern Project wihch contains screens life main page of trending items, product detail, list view of male and female card of cloths and their prices, cart which contains total price of product you added in your card",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
