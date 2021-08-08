@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intern_task_6/Components/Catagory_Data.dart';
 import 'package:intern_task_6/Components/ItemsData.dart';
 import 'package:intern_task_6/Components/Top_rounded.dart';
 import 'package:intern_task_6/Components/Trending_Item_Cards.dart';
 
 import '../Constants.dart';
+import 'Screen2_allitems.dart';
+
+List<ItemDataClass> _list = ItemDataClass.generate_items_list();
 
 class TrendingScreen extends StatelessWidget {
   @override
@@ -19,7 +23,6 @@ class ProductDetail extends StatefulWidget {
 }
 
 class _ProductDetailState extends State<ProductDetail> {
-  List<ItemDataClass> _list = ItemDataClass.generate_items_list();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,9 +79,18 @@ class _Body extends StatelessWidget {
                 'Trending',
                 style: TextStyle(fontSize: 20),
               ),
-              Text(
-                'View all',
-                style: TextStyle(fontSize: 20, color: Colors.blue),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return all_Items();
+                    },
+                  ));
+                },
+                child: Text(
+                  'View all',
+                  style: TextStyle(fontSize: 20, color: Colors.blue),
+                ),
               )
             ],
           ),
@@ -90,7 +102,7 @@ class _Body extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -98,9 +110,18 @@ class _Body extends StatelessWidget {
                 'Category',
                 style: TextStyle(fontSize: 20),
               ),
-              Text(
-                'View all',
-                style: TextStyle(fontSize: 20, color: Colors.blue),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return all_Items();
+                    },
+                  ));
+                },
+                child: Text(
+                  'View all',
+                  style: TextStyle(fontSize: 20, color: Colors.blue),
+                ),
               )
             ],
           ),
@@ -108,7 +129,7 @@ class _Body extends StatelessWidget {
         SizedBox(
           height: 200,
           child: Container(
-            child: mostpopular_trending(),
+            child: Catagory_Data(),
           ),
         ),
       ],

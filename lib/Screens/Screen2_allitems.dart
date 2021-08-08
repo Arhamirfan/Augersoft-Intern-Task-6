@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ItemsPreview extends StatelessWidget {
+class all_Items extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold();
   }
 }

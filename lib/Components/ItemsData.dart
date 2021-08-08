@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class ItemDataClass {
   final String title;
   final String imageURL;
@@ -44,6 +46,38 @@ class ItemDataClass {
           price: '49.99',
           description: 'Description for',
           wearBy: 'female')
+    ];
+  }
+}
+
+class Colours {
+  String colorname;
+  Color colour;
+
+  Colours({required this.colorname, required this.colour});
+
+  static List<Colours> generate_colours_list() {
+    return [
+      Colours(colorname: 'Grey', colour: Colors.grey),
+      Colours(colorname: 'Black', colour: Colors.black),
+      Colours(colorname: 'Blue', colour: Colors.blue),
+      Colours(colorname: 'Red', colour: Colors.red)
+    ];
+  }
+}
+
+class Size {
+  String size;
+
+  Size({required this.size});
+
+  static List<Size> generate_size() {
+    return [
+      Size(size: 'S'),
+      Size(size: 'M'),
+      Size(size: 'L'),
+      Size(size: 'XL'),
+      Size(size: 'XXL'),
     ];
   }
 }

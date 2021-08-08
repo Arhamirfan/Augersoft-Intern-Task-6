@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intern_task_6/Constants.dart';
-import 'package:intern_task_6/Screens/detail_page_fullscreen.dart';
+import 'package:intern_task_6/Screens/Screen3_productdetail.dart';
 
 import 'ItemsData.dart';
 
