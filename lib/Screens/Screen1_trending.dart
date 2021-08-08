@@ -44,7 +44,10 @@ class _ProductDetailState extends State<ProductDetail> {
               top: MediaQuery.of(context).padding.top,
             ),
             child: SizedBox(
-              height: kToolbarHeight,
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              //todo: add a search bar from flutter packages with low opacity just add row
+              child: Image.asset('images/search_bar.png'),
             ),
           )
         ],
