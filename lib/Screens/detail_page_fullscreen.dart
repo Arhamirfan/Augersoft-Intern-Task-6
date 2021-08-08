@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:intern_task_6/Components/ItemsData.dart';
+import 'package:intern_task_6/Components/Top_rounded.dart';
+import 'package:intern_task_6/Screens/Screen3_productdetail.dart';
+
+import '../Constants.dart';
 
 class DetailPage extends StatefulWidget {
   final ItemDataClass bean;
@@ -12,9 +15,6 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  final double expanded_height = 400;
-  final double rounded_container_height = 50;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,12 +22,13 @@ class _DetailPageState extends State<DetailPage> {
         children: <Widget>[
           CustomScrollView(
             slivers: <Widget>[
-              _buildSliverHead(),
+              _SilverMarginTop(),
               SliverToBoxAdapter(
                 child: _buildDetail(),
               )
             ],
           ),
+          //top appbar icons .. back and shopping cart
           Padding(
             padding: EdgeInsets.only(
               top: MediaQuery.of(context).padding.top,
@@ -55,9 +56,18 @@ class _DetailPageState extends State<DetailPage> {
                     padding: EdgeInsets.symmetric(
                       horizontal: 15,
                     ),
-                    child: Icon(
-                      Icons.shopping_cart_outlined,
-                      color: Colors.white,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return ProductDetail();
+                          },
+                        ));
+                      },
+                      child: Icon(
+                        Icons.shopping_cart_outlined,
+                        color: Colors.white,
+                      ),
                     ),
                   )
                 ],
@@ -69,9 +79,9 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  Widget _buildSliverHead() {
+  Widget _SilverMarginTop() {
     return SliverPersistentHeader(
-      delegate: DetailSliverDelegate(
+      delegate: PageTop_round(
         expanded_height,
         widget.bean,
         rounded_container_height,
@@ -169,9 +179,7 @@ class _DetailPageState extends State<DetailPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(
-              left: 10,
-            ),
+            padding: const EdgeInsets.only(left: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -184,20 +192,16 @@ class _DetailPageState extends State<DetailPage> {
                   ),
                 ),
                 Text(
-                  "Writer,Wonderlust",
+                  "\$ " + widget.bean.price,
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
+                    color: Colors.grey[700],
+                    fontSize: 20,
                   ),
                 ),
               ],
             ),
           ),
           Spacer(),
-          Icon(
-            Icons.share,
-            color: Colors.black54,
-          ),
         ],
       ),
     );
@@ -231,86 +235,3 @@ class _DetailPageState extends State<DetailPage> {
 //     );
 //   }
 // }
-
-class DetailSliverDelegate extends SliverPersistentHeaderDelegate {
-  final double expandedHeight;
-  final ItemDataClass bean;
-  final double rounded_container_height;
-
-  DetailSliverDelegate(
-      this.expandedHeight, this.bean, this.rounded_container_height);
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
-        statusBarBrightness: Brightness.dark,
-      ),
-      child: Stack(
-        children: <Widget>[
-          Hero(
-            tag: bean.imageURL,
-            child: Image.asset(
-              bean.imageURL,
-              width: MediaQuery.of(context).size.width,
-              height: expandedHeight,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned(
-            top: expandedHeight - rounded_container_height - shrinkOffset,
-            left: 0,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: rounded_container_height,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: expandedHeight - 120 - shrinkOffset,
-            left: 30,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  bean.title,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                  ),
-                ),
-                Text(
-                  bean.description,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  @override
-  double get maxExtent => expandedHeight;
-
-  @override
-  double get minExtent => 0;
-
-  @override
-  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
-  }
-}
